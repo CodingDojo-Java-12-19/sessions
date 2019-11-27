@@ -1,4 +1,4 @@
-public class Animal {
+public abstract class Animal implements IAnimal {
   private int numberOfLegs;
   protected String type;
 
@@ -18,6 +18,8 @@ public class Animal {
   public Animal() {
 
   }
+
+  public abstract void makeSound();
 
   public void setType(String type) {
     this.type = type;

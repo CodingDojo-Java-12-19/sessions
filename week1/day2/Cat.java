@@ -1,4 +1,4 @@
-public class Cat extends Animal {
+public class Cat extends Animal implements IAnimal {
 
   public Cat(int legs) {
     super("Cat", legs);
@@ -10,5 +10,9 @@ public class Cat extends Animal {
 
   public void run() {
     System.out.println("The cat is running!!!");
+  }
+
+  public void makeSound() {
+    System.out.println("Meow");
   }
 }
