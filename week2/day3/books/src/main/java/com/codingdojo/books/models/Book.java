@@ -2,11 +2,14 @@ package com.codingdojo.books.models;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -29,6 +32,8 @@ public class Book {
 	private Integer pages;
 	
 	private String publisher;
+	@OneToOne(mappedBy="book", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private BookCover cover;
 	
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -68,6 +73,14 @@ public class Book {
 
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
+	}
+
+	public BookCover getCover() {
+		return cover;
+	}
+
+	public void setCover(BookCover cover) {
+		this.cover = cover;
 	}
 
 	public Date getCreatedAt() {

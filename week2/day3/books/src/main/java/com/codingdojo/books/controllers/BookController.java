@@ -14,20 +14,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.codingdojo.books.models.Book;
+import com.codingdojo.books.models.BookCover;
+import com.codingdojo.books.services.BookCoverService;
 import com.codingdojo.books.services.BookService;
 
 @Controller
 @RequestMapping("/books")
+// /books/
 public class BookController {
 	private BookService bookService;
+	private BookCoverService coverService;
 	
-	public BookController(BookService bookService) {
+	public BookController(BookService bookService, BookCoverService coverService) {
 		this.bookService = bookService;
+		this.coverService = coverService;
 	}
 	
 	@RequestMapping("")
-	public String index(Model viewModel) {
-		List<Book> books = bookService.findAll();
+	public String index(Model viewModel, @ModelAttribute("newCover") BookCover newCover) {
+		List<Book> books = bookService.getAllBooks();
 		
 		viewModel.addAttribute("books", books);
 		
@@ -54,6 +59,17 @@ public class BookController {
 		
 		return "redirect:/books";
 	}
+	
+	@RequestMapping(value="cover", method=RequestMethod.POST)
+	public String create(@Valid @ModelAttribute("cover") BookCover cover, BindingResult result) {
+		if(result.hasErrors()) {
+			return "/books/index.jsp";
+		}
+		this.coverService.create(cover);
+		return "redirect:/books";
+		
+	}
+	
 	
 	@GetMapping("/new")
 	public String newBook(@ModelAttribute("book") Book book) {
