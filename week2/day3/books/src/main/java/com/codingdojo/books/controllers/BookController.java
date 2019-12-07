@@ -87,7 +87,13 @@ public class BookController {
 		viewModel.addAttribute("book", book);
 
 		
-		return "";
+		return "books/show.jsp";
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public String delete(@PathVariable("id") Long id) {
+		System.out.println("DELETEING");
+		return "redirect:/books";
 	}
 	
 	

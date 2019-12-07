@@ -22,50 +22,30 @@
 	<section>
 		<fieldset>
 			<legend>Create Book</legend>
+			<form:form 
+				action="/books" 
+				method="post" 
+				modelAttribute="book" 
+				autocomplete='off'>
+			    <div>
+			        <form:label path="title">Title</form:label>
+			        <form:input path="title"/>
+			        <form:errors path="title"/>
+			    </div>
+			    <div>
+			        <form:label path="publisher">Publisher</form:label>
+			        <form:input path="publisher"/>
+			        <form:errors path="publisher"/>
+			    </div>
 			
-	<form:form 
-		action="/books" 
-		method="post" 
-		modelAttribute="book" 
-		autocomplete='off'
-	>
-    <div>
-        <form:label path="title">Title</form:label>
-        <form:input path="title"/>
-        <form:errors path="title"/>
-    </div>
-    <div>
-        <form:label path="publisher">Publisher</form:label>
-        <form:input path="publisher"/>
-        <form:errors path="publisher"/>
-    </div>
-
-    <div>
-        <form:label path="pages">Pages</form:label>
-        <form:input type="number" path="pages"/>
-        <form:errors path="pages"/>     
-    </div>    
-    <input type="submit" value="Submit"/>
-</form:form>    
-			
-			
-<!-- 			<form action='/books' method='post' autocomplete='off'>
-				<div>
-					<label>Title</label>
-					<input type='text' name='title'>
-				</div>
-				<div>
-					<label>Pages</label>
-					<input type='number' name='pages'>
-				</div>
-				<div>
-					<label>Publisher</label>
-					<input type='text' name='publisher'>
-				</div>
-				<button>Submit</button>
-			</form> -->
+			    <div>
+			        <form:label path="pages">Pages</form:label>
+			        <form:input type="number" path="pages"/>
+			        <form:errors path="pages"/>     
+			    </div>    
+		    	<input type="submit" value="Submit"/>
+			</form:form>    
 		</fieldset>
-		
 	</section>
 </body>
 </html>
